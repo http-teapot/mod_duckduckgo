@@ -1,0 +1,15 @@
+{
+  "name": "mod_duckduckgo",
+  "version": "0.1.0",
+  "main": "./index.js",
+  "dependencies": {
+    "breach_module": "0.3.x",
+    "async": "0.9.x",
+    "request": "2.36.x",
+    "ddg": "0.0.3",
+    "express": "4.5.x",
+    "body-parser": "1.4.x",
+    "method-override": "2.1.x",
+    "socket.io": "1.0.x"
+  }
+}
