@@ -14,7 +14,7 @@ var breach = require('breach_module')
   , common = require("./lib/common.js")
   , express = require('express')
   , http = require('http')
-  , ddg = require("ddg");
+  , async = require('async');
 
 /******************************************************************************/
 /* MODULE BOOTSTRAP */
@@ -22,47 +22,46 @@ var breach = require('breach_module')
 var bootstrap = function(http_srv) {
   var http_port = http_srv.address().port;
 
-  breach.init(function () {
-    var timeout = null;
+  common._ = {
+    dropdown: require('./lib/dropdown.js').dropdown({
+      http_port: http_port
+    }),
+  };
 
+  breach.init(function() {
     breach.register('mod_strip', 'box_input');
-    breach.module('mod_strip').on('box_input', function (event) {
-      if (!event.value) {
-        return;
-      }
 
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-
-      timeout = setTimeout(function () {
-        ddg.query(event.value, function (err, data) {
-          console.log(data);
-        });
-      }, 300);
-
-      return;
+    breach.expose('init', function(src, args, cb_) {
+      async.parallel([
+        common._.dropdown.init,
+      ], cb_);
     });
 
-    breach.expose('init', function (src, args, cb_) {
-      console.log('Initialization');
-
-      // breach.module('core').call('controls_set', {
-      //   type: 'TOP',
-      //   url: 'http://localhost:' + http_port + '/dropdown',
-      //   dimension: 45
-      // }, cb_);
-
-      return cb_();
-    });
-
-    breach.expose('kill', function (args, cb_) {
-      common.exit(0);
+    breach.expose('kill', function(args, cb_) {
+      async.parallel([
+        common._.dropdown.kill
+      ], function(err) {
+        common.exit(0);
+      });
     });
   });
 
   process.on('uncaughtException', function (err) {
     common.fatal(err);
+  });
+
+  var io = require('socket.io').listen(http_srv, {
+    'log level': 1
+  });
+
+  io.sockets.on('connection', function (socket) {
+    socket.on('handshake', function (name) {
+      var name_r = /^_(.*)$/;
+      var name_m = name_r.exec(name);
+      if(name_m && common._[name_m[1]]) {
+        common._[name_m[1]].handshake(socket);
+      }
+    });
   });
 };
 
@@ -81,15 +80,12 @@ var bootstrap = function(http_srv) {
 
   /* App Configuration */
   app.use('/', express.static(__dirname + '/controls'));
-  app.use(require('body-parser')());
-  app.use(require('method-override')())
 
   app.get('/proxy', function(req, res, next) {
     request(req.param('url')).pipe(res);
   });
 
   var http_srv = http.createServer(app).listen(0, '127.0.0.1');
-
 
   http_srv.on('listening', function() {
     var port = http_srv.address().port;

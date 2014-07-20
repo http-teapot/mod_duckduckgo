@@ -10,6 +10,7 @@
     "express": "4.5.x",
     "body-parser": "1.4.x",
     "method-override": "2.1.x",
-    "socket.io": "1.0.x"
+    "socket.io": "1.0.x",
+    "exo_browser": "0.6.x"
   }
 }

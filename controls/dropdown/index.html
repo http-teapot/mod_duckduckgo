@@ -3,9 +3,53 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link rel="stylesheet" href="index.css"/>
   </head>
 
   <body>
-    <div>THE THANG</div>
+    <!-- The list of results -->
+    <div class="List">
+    </div>
+
+    <!-- This is hidden and holds UI templates -->
+    <div id="PlaceholderContainer">
+
+      <!-- Default search item -->
+      <div class="SearchItem SearchItem--default">
+        <!-- The searched terms and potential source of information -->
+        <div class="SearchItem-header">
+          <a href="#" class="SearchItem-header-source"></a>
+          <div class="SearchItem-header-title"></div>
+        </div>
+
+        <!-- An abstract that defines the word being searched -->
+        <blockquote class="SearchItem-abstract"></blockquote>
+
+        <!-- Related topics -->
+        <div class="SearchItem-relatedTopics">
+          <div class="SearchItem-relatedTopics-heading">Related topics</div>
+          <ul class="SearchItem-relatedTopics-list">
+            <li class="SearchItem-relatedTopics-list-item">
+              <div class="SearchItem-relatedTopics-list-item-text"></div>
+              <a class="SearchItem-relatedTopics-list-item-link" href="#"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/lib/jquery.js"></script>
+
+    <script src="index.js"></script>
+
+    <script type="text/javascript">
+      var dropdown = dropdown({
+        element:     $('.List'),
+        placeholder: $('#PlaceholderContainer')
+      }).init();
+    </script>
   </body>
 </html>
