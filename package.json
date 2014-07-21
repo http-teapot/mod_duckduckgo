@@ -8,9 +8,6 @@
     "request": "2.36.x",
     "ddg": "0.0.3",
     "express": "4.5.x",
-    "body-parser": "1.4.x",
-    "method-override": "2.1.x",
-    "socket.io": "1.0.x",
-    "exo_browser": "0.6.x"
+    "socket.io": "1.0.x"
   }
 }

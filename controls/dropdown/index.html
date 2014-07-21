@@ -8,9 +8,16 @@
   </head>
 
   <body>
+
+    <div class="Button Button--close">x</div>
+
     <!-- The list of results -->
     <div class="List">
     </div>
+
+    <footer class="Credits">
+      Results from <a href="https://duckduckgo.com">DuckDuckGo</a>
+    </footer>
 
     <!-- This is hidden and holds UI templates -->
     <div id="PlaceholderContainer">
@@ -19,8 +26,21 @@
       <div class="SearchItem SearchItem--default">
         <!-- The searched terms and potential source of information -->
         <div class="SearchItem-header">
-          <a href="#" class="SearchItem-header-source"></a>
-          <div class="SearchItem-header-title"></div>
+          <!-- If no official website we use a regular title -->
+          <div class="SearchItem-header-title SearchItem-header-title-text"></div>
+          <!-- If there is an official website then we use a link -->
+          <a href="#" class="SearchItem-header-title SearchItem-header-title-link"></a>
+
+          <div class="SearchItem-header-source">
+            Source:
+            <a href="#" class="SearchItem-header-source-link"></a>
+          </div>
+        </div>
+
+        <!-- Real result -->
+        <div class="SearchItem-result">
+          <div class="SearchItem-result-text"></div>
+          <a class="SearchItem-result-link" href="#"></a>
         </div>
 
         <!-- An abstract that defines the word being searched -->
@@ -28,7 +48,7 @@
 
         <!-- Related topics -->
         <div class="SearchItem-relatedTopics">
-          <div class="SearchItem-relatedTopics-heading">Related topics</div>
+          <div class="SearchItem-relatedTopics-heading">Related results</div>
           <ul class="SearchItem-relatedTopics-list">
             <li class="SearchItem-relatedTopics-list-item">
               <div class="SearchItem-relatedTopics-list-item-text"></div>

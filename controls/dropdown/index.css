@@ -3,6 +3,17 @@ body {
   font-weight: 200;
   line-height: 1.25;
   letter-spacing: 0;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a,
+a:visited {
+  color: #4285f4;
 }
 
 blockquote {
@@ -12,6 +23,34 @@ blockquote {
 
 #PlaceholderContainer {
   display: none;
+}
+
+.Button.Button--close {
+  background-color: #fff;
+  border: 2px solid #d4d4d4;
+  border-radius: 20px;
+  box-shadow: 0 0 5px 5px #fff;
+  color: #d4d4d4;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 22px;
+  height: 24px;
+  position: fixed;
+  text-align: center;
+  right: 14px;
+  top: 12px;
+  transition: all 0.2s;
+  width: 24px;
+}
+
+.Button.Button--close:hover {
+  color: #4285f4;
+  border-color: #4285f4;
+}
+
+.List {
+  border-right: 4px solid #d9d9d9;
+  padding: 10px 10px 30px;
 }
 
 .SearchItem {
@@ -26,24 +65,47 @@ blockquote {
   border-bottom: 1px solid #e4e4e4;
   margin-bottom: 6px;
   padding-bottom: 6px;
-}
-
-.SearchItem .SearchItem-header-source {
-  color: #4285f4;
-  float: right;
-  font-size: 12px;
-  margin-left: 6px;
-  line-height: 35px;
-  text-decoration: none;
+  overflow: auto;
 }
 
 .SearchItem .SearchItem-header-title {
+  display: inline-block;
   font-size: 24px;
   letter-spacing: 1px;
+  margin-right: 6px;
+}
+
+.SearchItem .SearchItem-header-source {
+  display: inline-block;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.SearchItem .SearchItem-header-source-link {
+  color: #4285f4;
+}
+
+.SearchItem .SearchItem-result {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.SearchItem .SearchItem-result .SearchItem-result-text,
+.SearchItem .SearchItem-result .SearchItem-result-link {
+  display: inline-block;
+}
+
+.SearchItem .SearchItem-result .SearchItem-result-text {
+  after: ':';
+}
+
+.SearchItem .SearchItem-result,
+.SearchItem .SearchItem-abstract {
+  margin-bottom: 10px;
 }
 
 .SearchItem .SearchItem-relatedTopics {
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 }
 
 .SearchItem .SearchItem-relatedTopics {
@@ -68,8 +130,26 @@ blockquote {
   overflow: hidden; /* for now */
 }
 
-.SearchItem .SearchItem-relatedTopics .SearchItem-relatedTopics-list-item-link {
+.SearchItem .SearchItem-relatedTopics .SearchItem-relatedTopics-list-item a {
   display: block;
+}
+
+.SearchItem .SearchItem-relatedTopics .SearchItem-relatedTopics-list-item-link {
+  color: #bebebe;
   font-size: 12px;
-  text-decoration: none;
+  margin-top: 2px;
+}
+
+.SearchItem .SearchItem-relatedTopics .SearchItem-relatedTopics-list-item-link:hover {
+  color: #343434;
+}
+
+.Credits {
+  background-color: #fff;
+  bottom: 0;
+  box-shadow: -5px -5px 20px 5px #fff;
+  padding: 8px 4%;
+  position: fixed;
+  text-align: right;
+  width: 91%;
 }

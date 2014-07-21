@@ -1,5 +1,5 @@
 /*
- * Breach: mod_duckduckgo index.js
+ * http-teapot: mod_duckduckgo index.js
  *
  * Copyright (c) 2014, Thomas Potaire. All rights reserved.
  *
@@ -29,6 +29,7 @@ var bootstrap = function(http_srv) {
   };
 
   breach.init(function() {
+    breach.register('core', 'tabs:.*');
     breach.register('mod_strip', 'box_input');
 
     breach.expose('init', function(src, args, cb_) {
@@ -44,10 +45,6 @@ var bootstrap = function(http_srv) {
         common.exit(0);
       });
     });
-  });
-
-  process.on('uncaughtException', function (err) {
-    common.fatal(err);
   });
 
   var io = require('socket.io').listen(http_srv, {
@@ -93,3 +90,7 @@ var bootstrap = function(http_srv) {
     return bootstrap(http_srv);
   });
 })();
+
+process.on('uncaughtException', function (err) {
+  common.fatal(err);
+});
