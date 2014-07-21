@@ -1,6 +1,7 @@
-mod_duckduckgo
-==============
+DuckDuckGo module for Breach.cc
+--------------
 
-Duckduckgo mod for Breach.cc
+Type some text in the navigation bar, the module will search on DuckDuckGo and display some results.
 
-Not usable yet.
+This module is **not** an official module from DuckDuckGo.com.
+This module uses DuckDuckGo's API.
